@@ -1,51 +1,38 @@
-# 1) Write R code to create a 3x3 matrix filled with the values 1 to 9, using the matrix() function. Then extract the first row and last column of the matrix using row and column indexing.
+# Q1) Create and store a three-dimensional array with six layers of a 4 X 2 matrix, filled with a decreasing sequence of values between 4.8 and 0.1 of the appropriate length.
 
 
-my_matrix <- matrix(1:9, nrow = 3)
-my_matrix
-first_row <- my_matrix[1, ]
-first_row
-last_col <- my_matrix[, 3]
-last_col
-
-# 2) Define a 4x4 matrix with all elements set to 0, and then fill the diagonal with the values 1, 2, 3, and 4 using the diag() function.
+my_array <- array(seq(4.8, 0.1, length.out=4*2*6), dim=c(4, 2, 6))
 
 
-my_matrix <- matrix(0, nrow = 4, ncol = 4)
-my_matrix
-diag(my_matrix) <- c(1, 2, 3, 4)
-diag(my_matrix)
-
-# 3) Create two matrices, A and B, each with dimensions 3x3, filled with random values. Combine them into a single matrix C by binding them together by columns.
-
-A <- matrix(rnorm(9), nrow = 3)
-A 
-B <- matrix(runif(9), nrow = 3)
-B
-C <- cbind(A, B)
-C
-
-# 4) Define a 5x5 matrix and replace the values in the 3rd row and 4th column with the value 0, using indexing.
+my_array
 
 
-matrix_example <- matrix(1:25, nrow=5)
-
-matrix_example
-
-matrix_example[3,4] <- 0
-
-matrix_example
-
-# 5) Create a 2x2 matrix with any values you choose, and then extract the elements in the top-right and bottom-left positions using the indexing operator.
+# Q2) Extract and store as a new object the fourth- and first-row elements, in that order, of the second column only of all layers of (1).
 
 
-my_matrix <- matrix(c(2, 4, 6, 8), nrow = 2)
-my_matrix
+new_obj <- c(my_array[4, 2, ], my_array[1, 2, ])
+
+new_obj
 
 
-top_right <- my_matrix[1, 2]
-top_right
 
-bottom_left <- my_matrix[2, 1]
-bottom_left
+# Q3) Use a fourfold repetition of the second row of the matrix formed in (2) to fill a new array of dimensions 2 X 2 X 2 X.
 
+new_array <- array(rep(new_obj[2:3], each=4), dim=c(2, 2, 2))
+
+new_array
+
+
+# Q4) Create a new array comprised of the results of deleting the sixth layer of (1).
+
+new_array2 <- my_array[, , -6]
+
+new_array2
+
+
+
+# Q5) Overwrite the second and fourth row elements of the second column of layers 1, 3 and 5 of (4) with -99.
+
+new_array2[c(2, 4), 2, c(1, 3, 5)] <- -99
+
+new_array2
